@@ -1,0 +1,20 @@
+<nav class= "#424242 grey darken-3">
+  <div class="nav-wrapper navbar-fixed container">
+    <%= link_to 'ChaMarket', root_path, class: 'brand-logo' %>
+    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <% if user_signed_in? %>
+      <li><%= link_to 'Log out', destroy_user_session_path, method: :delete %></li>
+      <% else %>
+      <li><%= link_to 'Sign up', new_user_registration_path %></li>
+      <li><%= link_to 'Log in', new_user_session_path %></li>
+      <% end %>
+
+
+
+    </ul>
+    <ul class="side-nav" id="mobile-demo">
+      <li><%= link_to 'About', about_path%></li>
+    </ul>
+  </div>
+</nav> 
