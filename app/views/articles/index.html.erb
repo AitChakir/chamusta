@@ -1,35 +1,38 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Articles</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Description</th>
-      <th>Name</th>
-      <th>Price</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @articles.each do |article| %>
-      <tr>
-        <td><%= article.title %></td>
-        <td><%= article.description %></td>
-        <td><%= article.user.name %></td>
-        <td><%= article.price %></td>
-        <td><%= link_to 'Show', article %></td>
-        <% if current_user == article.user %>
-        <td><%= link_to 'Edit', edit_article_path(article) %></td>
-        <td><%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="row">
+  <% @articles.each do |article| %>
+    <div class=" col s4">
+      <div class="card">
+        <div class="card-image waves-effect waves-block waves-light">
+          <%= image_tag article.cover.url, class: "activator" %>
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4"><%= article.title %><i class="material-icons right">more_vert</i></span>
+          <div>
+            <p>Bayed from<span class="right"><%= article.user.name %></span></p><br>
+            <p>Price article<span class="right"><%= number_to_currency(article.price) %></span></p>
+            <div class="center"><br>
+              <%= link_to 'See more', article, class: "btn" %>
+            </div>
+            <% if current_user == article.user %><br>
+            <div class="center">
+            <%= link_to 'Edit', edit_article_path(article) %> |
+            <%= link_to 'Destroy', article, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+          </div>
+            <% end %>
+          </div>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4"><%= article.title %><i class="material-icons right">close</i></span>
+          <p><%= article.description %></p>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
 
 <br>
-
-<%= link_to 'New Article', new_article_path %>
+<div class= "center">
+  <%= will_paginate @articles %>
+</div><br>

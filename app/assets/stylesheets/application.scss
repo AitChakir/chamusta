@@ -1,8 +1,13 @@
 @import "materialize";
+
 body {
 display: flex;
 min-height: 100vh;
 flex-direction: column;
+}
+
+h1 {
+	font-size: 3em;
 }
 
 main {
@@ -11,5 +16,17 @@ flex: 1 0 auto;
 
 .devise-btn {
 	width: 100%;
+}
+
+.title-margine {
+	margin-top: 0;
+}
+
+.show-image {
+	padding-right: 5%;
+}
+
+.card-image {
+	height: 200px;
 }
 
